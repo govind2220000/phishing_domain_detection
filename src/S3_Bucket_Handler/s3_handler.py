@@ -109,11 +109,12 @@ if __name__ == '__main__':
     client = cv.s3_client_initialize(access_key, secret_key)
     #cv.s3_bucket_upload_file(client,file_path="G:\\Phishing_Domain_Detection\\src\\S3_Bucket_Handler\\122.csv",file_name = '122.csv',bucket_name='phishingdomain')
     #cv.s3_bucket_upload(client,"G:\\Phishing_Domain_Detection\\src\\Raw_Data\\",bucket_name='phishingdomain')
-    cv.delete_file(client,'122.csv',bucket_name='phishingdomain')
+    #cv.delete_file(client,'122.csv',bucket_name='phishingdomain') #needs permission
     
     #cv.list_buckets_contents(client,"phishingdomain")
-    #file_list = cv.list_folder_contents(client,"phishingdomain","phishing/")
-    #print(file_list[0])
+    file_list = cv.list_folder_contents(client,"phishingdomain","phishing/")
+    print(file_list[0])
     #cv.delete_file(client,file_list[-1],"phishingdomain")
-    #cv.download_file_(client,file_name = file_list[0],file_save_path="G:/Phishing_Domain_Detection/src/S3_Bucket_Handler",bucket_name='phishingdomain')
+    for i in range(len(file_list)):
+        cv.download_file_(client,file_name = file_list[i],file_save_path="G:/Phishing_Domain_Detection/src/Raw_Data",bucket_name='phishingdomain')
     
